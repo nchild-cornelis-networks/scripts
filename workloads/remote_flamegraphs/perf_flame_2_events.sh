@@ -4,9 +4,9 @@
 FLAME=$1
 shift 1
 CMD="$@"
-EVENT1="instructions"
-#EVENT1="cycles:a"  # add :k for just kernel code, or :a for all
-EVENT2="cycles"
+EVENT1="instructions:k"
+#EVENT1="cycles:a"  # add :k for just kernel code, or remove :k for all
+EVENT2="cycles:k"
 PERF="perf record -a -e $EVENT1,$EVENT2 -g -o perf.data"
 echo "RUNING $PERF $CMD" >&2
 $PERF $CMD
