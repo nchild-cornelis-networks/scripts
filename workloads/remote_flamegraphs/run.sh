@@ -59,8 +59,8 @@ while run_cmd $host2 "ps aux | grep \"$perf_record_script\" | grep -v grep"; do
 	sleep 2;
 done
 
-echo "Workload done, fetching png"
-outdir=output/`basename ${cmd[0]}`_`echo ${cmd:2} | sed 's/[^a-zA-Z0-9._-]/_/g'`--`date +"%Y%m%dT%H%M"`
+echo "Workload done, fetching SVGs"
+outdir=output/`basename ${cmd%% *}`_`echo ${cmd#* } | sed 's/[^a-zA-Z0-9._-]/_/g'`--`date +"%Y%m%dT%H%M"`
 for h in $host1 $host2; do
 	scp -o BatchMode=yes root@$h:$flame_path/output/perf.svg perf.svg || exit 1
 	mkdir -p $outdir
